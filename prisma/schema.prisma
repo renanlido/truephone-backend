@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+model File {
+  id String @id @default(uuid())
+
+  name String @unique
+
+  date DateTime @default(now())
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  ContactList ContactsList[]
+}
+
+model ContactsList {
+  id String @id @default(uuid())
+
+  file_id String
+
+  file File @relation(fields: [file_id], references: [id])
+
+  phone String
+
+  message String
+
+  status Boolean
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
