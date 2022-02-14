@@ -3,7 +3,7 @@ import cors from "cors";
 import express from "express";
 import { routes } from "router";
 
-const port = 3333;
+const port = process.env.PORT || 3333;
 
 const app = express();
 
