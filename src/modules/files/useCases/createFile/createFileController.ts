@@ -4,7 +4,7 @@ import { CreateFileUseCase } from "./createFileUseCase";
 
 export class CreateFileController {
   async handle(request: Request, response: Response) {
-    const { date, name, contactsList } = request.body;
+    const { date, name, contactsList } = request.body.data;
 
     const createFileUseCase = new CreateFileUseCase();
 
@@ -14,6 +14,6 @@ export class CreateFileController {
       contactsList,
     });
 
-    response.json(result);
+    response.json({ result });
   }
 }
